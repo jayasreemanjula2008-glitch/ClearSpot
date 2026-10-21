@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#166534">
+  <title>CleanSpot | A Cleaner Community</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#">🌿 <span>CleanSpot</span></a>
+    <button id="languageBtn" class="language-btn" type="button">தமிழ்</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="eyebrow">A cleaner community starts with us</p>
+        <h1 data-i18n-html="heading">See a problem? <span>Report it!</span></h1>
+        <p data-i18n="description">Help keep public places clean by reporting cleanliness issues in your neighbourhood or college.</p>
+        <a class="primary-btn" href="#reportSection" data-i18n="heroBtn">+ Report an Issue</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">🌱</div>
+    </section>
+
+    <section class="stats-section">
+      <div class="stat-card">
+        <span class="stat-icon">📋</span>
+        <p data-i18n="totalReports">Total Reports</p>
+        <strong id="totalCount">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">⏳</span>
+        <p data-i18n="pendingReports">Pending</p>
+        <strong id="pendingCount">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">✅</span>
+        <p data-i18n="resolvedReports">Resolved</p>
+        <strong id="resolvedCount">0</strong>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="categoriesEyebrow">MAKE A DIFFERENCE</p>
+        <h2 data-i18n="categoryHeading">What needs attention?</h2>
+      </div>
+      <div class="category-grid">
+        <article class="category-card">
+          <span>🚻</span>
+          <h3 data-i18n="toiletTitle">Public Toilets</h3>
+          <p data-i18n="toiletText">Report unclean or damaged public toilets.</p>
+        </article>
+        <article class="category-card">
+          <span>🚰</span>
+          <h3 data-i18n="waterTitle">Drinking Water</h3>
+          <p data-i18n="waterText">Report water leaks or unclean water areas.</p>
+        </article>
+        <article class="category-card">
+          <span>🗑️</span>
+          <h3 data-i18n="wasteTitle">Waste Bins</h3>
+          <p data-i18n="wasteText">Report overflowing bins or litter.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="reportSection" class="form-section">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="formEyebrow">HELP YOUR COMMUNITY</p>
+        <h2 data-i18n="formHeading">Report a Cleanliness Issue</h2>
+        <p data-i18n="formDescription">Tell us what needs attention.</p>
+      </div>
+
+      <form id="reportForm" class="report-form">
+        <label for="category" data-i18n="categoryLabel">Category</label>
+        <select id="category" name="category" required>
+          <option value="" data-i18n="chooseCategory">Choose a category</option>
+          <option value="Public Toilets" data-i18n="toiletTitle">Public Toilets</option>
+          <option value="Drinking Water" data-i18n="waterTitle">Drinking Water</option>
+          <option value="Waste Bins" data-i18n="wasteTitle">Waste Bins</option>
+          <option value="Other" data-i18n="other">Other</option>
+        </select>
+
+        <label for="location" data-i18n="locationLabel">Location</label>
+        <input id="location" name="location" type="text" maxlength="150"
+          placeholder="e.g. Near college gate"
+          data-i18n-placeholder="locationPlaceholder" required>
+
+        <label for="details" data-i18n="detailsLabel">Describe the issue</label>
+        <textarea id="details" name="details" rows="4" maxlength="1500"
+          placeholder="Tell us what happened..."
+          data-i18n-placeholder="detailsPlaceholder" required></textarea>
+
+        <label for="issuePhoto" data-i18n="photoLabel">Upload a photo (optional, max 5 MB)</label>
+        <input id="issuePhoto" name="issuePhoto" type="file" accept="image/*">
+
+        <div id="photoPreviewContainer" class="photo-preview-container" hidden>
+          <p data-i18n="photoPreviewTitle">Photo preview</p>
+          <img id="photoPreview" alt="Selected photo preview">
+        </div>
+
+        <button id="submitBtn" class="primary-btn submit-btn" type="submit"
+          data-i18n="submitBtn">Submit Report</button>
+        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="recentReports" class="recent-section">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="recentEyebrow">COMMUNITY UPDATES</p>
+        <h2 data-i18n="recentHeading">Recent Reports</h2>
+        <p data-i18n="recentDescription">Search and manage submitted reports.</p>
+      </div>
+
+      <div class="report-tools">
+        <label class="visually-hidden" for="searchReports" data-i18n="searchLabel">Search reports</label>
+        <input id="searchReports" type="search"
+          placeholder="Search by location, category or details..."
+          data-i18n-placeholder="searchPlaceholder">
+
+        <label class="visually-hidden" for="filterStatus" data-i18n="filterLabel">Filter by status</label>
+        <select id="filterStatus">
+          <option value="All" data-i18n="allReports">All Reports</option>
+          <option value="Pending" data-i18n="pending">Pending</option>
+          <option value="Resolved" data-i18n="resolved">Resolved</option>
+        </select>
+      </div>
+
+      <div id="reportList" class="report-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-i18n="footerText">Together, let's keep our community clean. 🌍</p>
+  </footer>
+</body>
+</html>
